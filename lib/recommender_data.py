@@ -94,7 +94,7 @@ class RECCOMEND_DATA():
 
     def calculate_score(self, vals):
         """
-        determines a score by mutliplying values together
+        determines a score by multiplying values together
         """
         score = np.prod(vals)
 

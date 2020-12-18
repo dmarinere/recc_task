@@ -13,7 +13,9 @@ sys.path.append(this_dir)
 from look_up_table import LOOK_UP_TABLE, COLUMN_INPUTS, COLUMN_OUTPUTS
 
 def group_by_kpi(df):
-    """"""
+    """This groups adverts first by their  first key and then the version and sums their KPI's 
+    for all the adverts runned irrespective of the time and location, this is grouped by their impression
+    first_dropped, and click-through-event"""
     kpis = ['impression', 'first_dropped', 'click-through-event']
     
     first_key_version = ['first_key', 'version']
@@ -25,6 +27,8 @@ def group_by_kpi(df):
 
 
 def get_dct_kpis_from_row(row):
+    """This returns the KPI's for previous ads that had been run by Adludio's company and returns 
+    it as a dictionary"""
     return {
         'impressions': row['impression'],
         'engagements': row['first_dropped'],
@@ -44,7 +48,9 @@ def get_dct_features_for_game(first_key, version):
 
 
 def get_ouput(df):
-
+    """iterates over a dataframe to get values for the first key and version for the dataframe this is then 
+    used to create a game key which is then used to uniquely identify any query sent and used to
+    uniquely save a query to output"""
     output = {}
     for _, row in df.iterrows():
 
