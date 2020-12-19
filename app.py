@@ -133,7 +133,7 @@ def make_recommendation():
         rec_score.append({'game_id': game_id,
                          'score': gm_kys_view[game_id]['rec_scores'], 'game_features': game_features
                          })
-
+        print(game_id)
     if VERBOSE:
         print('rec_score', rec_score, file=sys.stdout)
         pass
@@ -171,4 +171,4 @@ if __name__ == "__main__":
 
     # app = create_app(config=None)
     # , use_reloader=False) # remember to set debug to False
-    app.run(host='0.0.0.0', port=port, debug=VERBOSE)
+    app.run(host='0.0.0.0', port=port, debug=False)
