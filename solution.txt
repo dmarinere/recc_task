@@ -1,0 +1,6 @@
+To run the query in for task 4 pleaase run 
+
+pytest recc_task/test test_set1.py 
+
+
+this would return the results of all the test done, if it passed or fail some
