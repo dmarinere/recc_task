@@ -1,3 +1,5 @@
 __pycache__
 .pytest_cache
 .vscode
+__pycache__/app.cpython-38.pyc
+test/__pycache__/test_set1.cpython-38-pytest-5.3.5.pyc
