@@ -71,7 +71,7 @@ def list_searchable_parameters():
     print('here', file=sys.stdout)
     inputs = REC_DATA.list_input_keys_values()
     print('inputs',inputs, file=sys.stdout)
-    targets = look_up_table.LOOK_UP_TABLE['campaign_objective']
+    targets = look_up_table.LOOK_UP_TABLE['targets']
     print('targets', targets, file=sys.stdout)
     return json_response({"inputs": inputs, "targets": targets})
 
@@ -88,24 +88,25 @@ def make_recommendation():
     if VERBOSE:
         print('json_dict', json_dict, file=sys.stdout)
 
-    # beware campaign_objective also sent in
-    slice_parameters = json_dict #[{i: json_dict[i]} for i in json_dict if i != 'campaign_objective']
+    # beware objectives also sent in
+    val  = ['region','season', 'vertical']
+    slice_parameters  = {x:json_dict[x] for x in val} #[{i: json_dict[i]} for i in json_dict if i != 'objectives']
 
 
     # set default objects if none given
-    objectives = json_dict.get('campaign_objective', look_up_table.LOOK_UP_TABLE['campaign_objective'])
+    targets = json_dict.get('targets', look_up_table.LOOK_UP_TABLE['targets'])
 
-    if isinstance(objectives, list) is False:
-        objectives = [objectives]
-    print('objectives', objectives, file=sys.stdout)
+    if isinstance(targets, list) is False:
+        targets = [targets]
+    print('targets', targets, file=sys.stdout)
     # assure the objectives are reasonable
-    for obj in objectives:
-        assert obj in look_up_table.LOOK_UP_TABLE['campaign_objective']
+    for obj in targets:
+        assert obj in look_up_table.LOOK_UP_TABLE['targets']
 
 
     # identify rows matching the input query params
     matching_rows = REC_DATA.extract_data_slice(slice_parameters)
-
+    print('matching rows',matching_rows, file=sys.stdout)
     # summ all events for each line_item_id matching for the above results
     gm_kys_view = REC_DATA.sum_events(
                         matching_rows, ['first_key'], event_rates)
@@ -119,7 +120,7 @@ def make_recommendation():
         gm_kys_view[game_id]['engagement_rate'] = REC_DATA.calculates_rates(gm_kys_view[game_id]['first_dropped'], gm_kys_view[game_id]['impression'])
 
         # calculate the specific score for this game
-        gm_kys_view[game_id]['rec_scores'] = REC_DATA.calculate_score([gm_kys_view[game_id][obj] for obj in objectives])
+        gm_kys_view[game_id]['rec_scores'] = REC_DATA.calculate_score([gm_kys_view[game_id][obj] for obj in targets])
 
     # sort the games based on 'decreasing' score this is done using the -1 at the end of the 
     #function
