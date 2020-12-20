@@ -16,6 +16,7 @@ def group_by_kpi(df):
     """This groups adverts first by their  first key and then the version and sums their KPI's 
     for all the adverts runned irrespective of the time and location, this is grouped by their impression
     first_dropped, and click-through-event"""
+    #this was not called actually
     kpis = ['impression', 'first_dropped', 'click-through-event']
     
     first_key_version = ['first_key', 'version']

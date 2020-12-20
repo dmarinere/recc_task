@@ -3,9 +3,9 @@ scipy
 numpy
 cython
 pytest==5.3.5
-scikit-learn==0.23.2
+scikit-learn==0.20
 Pillow==7.0.0
-joblib==0.12
+joblib==0.14
 requests
 scikit-image
 flask-restplus==0.13.0
@@ -19,3 +19,4 @@ six
 PythonTurtle==0.3.1
 tornado
 hdbscan
+statsmodels
