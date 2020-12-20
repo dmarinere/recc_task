@@ -106,7 +106,7 @@ def make_recommendation():
     # identify rows matching the input query params
     matching_rows = REC_DATA.extract_data_slice(slice_parameters)
 
-    # summ all events for each line_item_id matching above results
+    # summ all events for each line_item_id matching for the above results
     gm_kys_view = REC_DATA.sum_events(
                         matching_rows, ['first_key'], event_rates)
 
@@ -121,7 +121,8 @@ def make_recommendation():
         # calculate the specific score for this game
         gm_kys_view[game_id]['rec_scores'] = REC_DATA.calculate_score([gm_kys_view[game_id][obj] for obj in objectives])
 
-    # sort the games based on 'decreasing' score
+    # sort the games based on 'decreasing' score this is done using the -1 at the end of the 
+    #function
     ind_sort = np.argsort([gm_kys_view[game_id]['rec_scores'] for game_id in uniq_games])[::-1]
     
     # generate a results list of score and games
