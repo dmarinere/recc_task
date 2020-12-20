@@ -196,21 +196,25 @@ function list_searchable_parameters(){
 
 // auto generate a form, based on current data
 function populate_form(data){
-    console.log(data);
     // replace form_html with **dynamically generated*** html
     // based on keys and values.
     var form_html = JSON.stringify(data);
-    print(data)
     form_html = "<label for='season'>season</label><select name='season'>";
-    //form_html += "<option value='Summer' >Summer </option>";
-    //form_html += "<option value='Winter' >Winter </option></select>";
+        for (var i = 0; i < data['inputs']['season'].length; i++){
+            form_html += "<option value='data['inputs']['season'][i]'> data['inputs']['season'][i] </option>";
+    }
+        
+
+
+
+
+   
 
     //----- your code here: hint, use for-loops!
-    for (var i = 0; i < data.keys().length ; i++) {
-      form_html = "<label for='data.keys()[i]'>data.keys()[i]</label><select name='data.keys()[i]' >"
-      form_html += "<option value=data[i]></option></select>"
-      document.getElementById("for").innerHTML = data.keys()[i]
-        }
+   // for (var i = 0; i < data.keys().length ; i++) {
+     // form_html = "<label for='data.keys()[i]'>data.keys()[i]</label><select name='data.keys()[i]' >"
+      //form_html += "<option value='data[i]'></option></select>"
+      //  }
 
     //==== leave this line here! otherwise we cannot submit the form!==== 
     form_html  += "<input type='button' class='submit' onclick='submit_form(this)' value='Get Best Performing Ads'>";
