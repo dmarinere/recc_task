@@ -196,30 +196,29 @@ function list_searchable_parameters(){
 
 // auto generate a form, based on current data
 function populate_form(data){
-    // replace form_html with **dynamically generated*** html
-    // based on keys and values.
+       // based on keys and values.
     var form_html = JSON.stringify(data);
      
     form_html = "<label for=" +"region" + ">region</label><select name=" +"region"+ ">";
         for (var i = 0; i < data['inputs']['region'].length; i++){
             form_html += "<option value=" + data['inputs']['region'][i] +">" + data['inputs']['region'][i] + "</option>"
     }
-    
+    form_html += "</select><br>" ;
     form_html += "<label for=" + "season" + ">season</label><select name=" +"season"+ ">";
         for (var i = 0; i < data['inputs']['season'].length; i++){
             form_html += "<option value=" + data['inputs']['season'][i] +">" + data['inputs']['season'][i] + "</option>"
     }   
-
+    form_html += "</select><br>" ;
     form_html += "<label for=" +"vertical" + ">vertical</label><select name=" + "vertical" +">";
         for (var i = 0; i < data['inputs']['vertical'].length; i++){
             form_html += "<option value=" + data['inputs']['vertical'][i] + ">" + data['inputs']['vertical'][i]  +"</option>"
     }
-
+    form_html += "</select><br>" ;
     form_html +=  "<label for='targets'>targets</label><select name='targets'>";
        for (var i = 0; i < data['targets'].length; i++) {
            form_html += "<option value=" + data['targets'][i] + ">" + data['targets'][i] + "</option>"
     }
-
+    form_html += "</select><br>";
     //==== leave this line here! otherwise we cannot submit the form!==== 
     form_html  += "<input type='button' class='submit' onclick='submit_form(this)' value='Get Best Performing Ads'>";
     // now populate the form
