@@ -9,7 +9,7 @@ joblib==0.14
 requests
 scikit-image
 flask-restplus==0.13.0
-flask_cors==3.0.8
+Flask-Cors>=3.0.9
 pandas==1.0.5
 werkzeug==0.16.1
 flask-swagger==0.2.14
